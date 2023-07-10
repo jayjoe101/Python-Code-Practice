@@ -1,5 +1,5 @@
 import game_data
-import art
+import art # you should import like from art import logo, vs
 import random
 import os
 
