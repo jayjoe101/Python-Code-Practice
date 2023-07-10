@@ -42,12 +42,6 @@ def card_value(d):
             value += int(c)
     return value
 
-
-player_deck = []
-computer_deck = []
-player = []
-computer = []
-
 def print_screen(pd,cd,p,c):
     """prints the 'ui' to the screen"""
     os.system('cls')
@@ -62,6 +56,9 @@ def print_screen(pd,cd,p,c):
 
 def blackjack():
     
+    player_deck = []
+    computer_deck = []
+
     add_card(player_deck, 2)  
     add_card(computer_deck, 1)
     
@@ -73,18 +70,18 @@ def blackjack():
         print_screen(player_deck,computer_deck,player,computer)
         
         
-        if player < 21 and input('"h" to hit "s" to stand: '):
+        if player < 21 and input('"h" to hit "s" to stand: ') == 'h':
             add_card(player_deck, 1)
             player = card_value(player_deck)
         else:
             while computer < 17:
-                time.sleep(2)
+                time.sleep(1)
                 add_card(computer_deck, 1)
                 computer = card_value(computer_deck)
                 print_screen(player_deck,computer_deck,player,computer)
             if player > 21 and computer > 21:
                 print('Both busted')
-            elif player > 21:
+            if player > 21:
                 print('Busted, You lose')
             elif computer > 21:
                 print('Dealer busts, your win')
@@ -93,14 +90,9 @@ def blackjack():
             else:
                 print('Player wins')
             break
-            
+    
+    if input('Want to keep playing? ("y" or "n"): ') == 'y':
+        shuffle()
+        blackjack()
 
 blackjack()
-
-if input('Want to keep playing? ("y" or "n"): ') == 'y':
-    player_deck = []
-    computer_deck = []
-    player = []
-    computer = []
-    shuffle()
-    blackjack()
