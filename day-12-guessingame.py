@@ -1,15 +1,11 @@
 import random
 
-def get_random_num():
-    """generates random num from 1 to 100"""
-    return random.choice(range(1, 101))
-
 def guessing_game():
     difficulty = input('Choose a difficulty, "easy" or "hard": ')
     lives = 5
     if difficulty == 'easy':
         lives = 10
-    secret_number = get_random_num()    
+    secret_number = random.randint(1,100)    
     
     while lives > 0:
         print(f'Your have {lives} attempts to guess the number')
