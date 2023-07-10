@@ -52,7 +52,6 @@ def print_screen(pd,cd,p,c):
     
     print(f'Dealer cards: {cd}')
     print(f'Dealer cards value: {c}')
- 
 
 def blackjack():
     
@@ -68,7 +67,6 @@ def blackjack():
     while True:
         
         print_screen(player_deck,computer_deck,player,computer)
-        
         
         if player < 21 and input('"h" to hit "s" to stand: ') == 'h':
             add_card(player_deck, 1)
