@@ -3,4 +3,4 @@ Just me practicing my Python skills
 
 Some files are just notes for myself; others are working programs
 
-All code is written without any ai assistance, as this project is purely for improving my coding skills
+Because the goal of this project is to improve my coding skills, all code is written without the assistance of artificial intelligence
