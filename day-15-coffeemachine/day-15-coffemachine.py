@@ -21,6 +21,7 @@ def check_money(coffee, money):
     return False
 
 def calculate_cost(coffee, money):
+    """returns either change or say how much was refunded"""
     cost = MENU[coffee]['cost']
     if check_money(coffee, money):
         if money > cost:
@@ -38,6 +39,7 @@ def check_resources(coffee):
     return missing_resource.strip()   
 
 def brew(coffee, money):
+    """will make a coffe or print why it cant"""
     s = check_resources(coffee)
     if s:
         return f'Sorry you do not have sufficient:\n{s}'
