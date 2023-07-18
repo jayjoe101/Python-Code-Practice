@@ -29,7 +29,7 @@ def main():
         for s in snake.snake:
             if s == snake.head:
                 pass
-            elif snake.head.distance(s) < 20:
+            elif snake.head.distance(s) < 10:
                 scoreboard.game_over()
                 game_on = False
 
