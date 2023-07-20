@@ -10,7 +10,7 @@ class Snake():
     def add_snake(self):
         """adds a piece of the snake"""
         t = Turtle('square')
-        t.color('grey')
+        t.ht()
         t.penup()
 
         if len(self.snake):
@@ -32,6 +32,7 @@ class Snake():
         t.color('grey')
         
         self.snake.append(t)
+        t.st()
     
     def init_snake(self):
         """base snake at the start of the game all snake objects start as this"""
