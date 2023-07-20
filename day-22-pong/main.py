@@ -28,6 +28,7 @@ while game:
     time.sleep(0.01)
     ball.forward(speed)
 
+    # detects wall collision
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.wall_bounce()
 
@@ -41,6 +42,7 @@ while game:
         speed += .5
         ball.paddle_bounce()
 
+    # detects if ball went past a paddle
     if ball.xcor() > 400:
         scoreboard.add_lscore()
         time.sleep(1)
@@ -52,6 +54,7 @@ while game:
         speed = 3
         ball.serve_ball()
     
+    # end game criteria 
     if scoreboard.rscore > 5 or scoreboard.lscore > 5:
         scoreboard.game_over()
         game = False

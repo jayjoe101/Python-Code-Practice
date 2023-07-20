@@ -51,6 +51,7 @@ class Score(Turtle):
         self.right_score()
 
     def game_over(self):
+        """prints winning player and ends game"""
         self.setpos((0,0))
         if self.lscore > self.rscore:
             self.color('blue')

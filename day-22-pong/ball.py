@@ -29,4 +29,5 @@ class Ball(Turtle):
         self.setheading((self.heading() * -1) + 180)
 
     def wall_bounce(self):
+        """bounce logic on wall"""
         self.setheading(self.heading() * -1)
