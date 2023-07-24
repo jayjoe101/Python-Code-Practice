@@ -15,16 +15,16 @@ food = Food()
 scoreboard = Scoreboard()
 
 def main():
-    game_on = True
-    while game_on:
+    while True:
         screen.update()
-        time.sleep(0.1)
+        time.sleep(0.05)
         snake.move_forward()
 
         # collided with wall
         if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
             scoreboard.game_over()
-            game_on = False
+            time.sleep(.5)
+            snake.reset()
 
         #collide with tail
         for s in snake.snake:
@@ -32,7 +32,8 @@ def main():
                 pass
             elif snake.head.distance(s) < 10:
                 scoreboard.game_over()
-                game_on = False
+                time.sleep(.5)
+                snake.reset()
 
         # collided with food
         if snake.head.distance(food) < 15:
@@ -40,6 +41,7 @@ def main():
             scoreboard.add_score()
             snake.add_snake()
 
+        screen.update()
 
 screen.onkeypress(snake.move_up, 'w')
 screen.onkeypress(snake.move_left, 'a')

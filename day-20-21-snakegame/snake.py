@@ -9,30 +9,31 @@ class Snake():
 
     def add_snake(self):
         """adds a piece of the snake"""
-        t = Turtle('square')
-        t.ht()
-        t.penup()
-
         if len(self.snake):
             last_pos = self.snake[-1].pos
-            
-            if self.snake[-1].heading == 0: # last is going right
-                t.goto(last_pos[0]-20, last_pos[1])
+            last_snake = self.snake[-1].heading
+            t = Turtle('square')
+            t.penup()
+            if last_snake == 0: # last is going right
+                t.setpos(last_pos[0]-20, last_pos[1])
                 self.head().forward(20)
-            elif self.snake[-1].heading == 180: # last is going left
-                t.goto(last_pos[0]+20, last_pos[1])
+            elif last_snake == 180: # last is going left
+                t.setpos(last_pos[0]+20, last_pos[1])
                 self.head().forward(20)
-            elif self.snake[-1].heading == 90: # last is going up
-                t.goto(last_pos[0], last_pos[1]-20)
+            elif last_snake == 90: # last is going up
+                t.setpos(last_pos[0], last_pos[1]-20)
                 self.head().forward(20)
-            elif self.snake[-1].heading == 270: # last is going down
-                t.goto(last_pos[0], last_pos[1]+20)
+            elif last_snake == 270: # last is going down
+                t.setpos(last_pos[0], last_pos[1]+20)
                 self.head().forward(20)
-        
-        t.color('grey')
-        
-        self.snake.append(t)
-        t.st()
+            self.snake.append(t)
+            t.color('grey')
+        else:
+            t = Turtle()
+            t.penup()
+            t.shape('square')
+            t.color('grey')
+            self.snake.append(t)
     
     def init_snake(self):
         """base snake at the start of the game all snake objects start as this"""
@@ -67,3 +68,11 @@ class Snake():
             ycord = self.snake[current_part - 1].ycor()
             self.snake[current_part].goto(xcord, ycord)
         self.head.forward(20)
+
+    def reset(self):
+        """resets the snake after game over"""
+        for snake in self.snake:
+            snake.goto(1000,1000)
+        self.snake.clear()
+        self.init_snake()
+        self.head = self.snake[0]
