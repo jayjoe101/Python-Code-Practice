@@ -8,7 +8,7 @@ class Player(Turtle):
         self.penup()
         self.shape('turtle')
         self.color('White')
-        self.start_position_y = -260
+        self.start_position_y = -270
         self.start_position_x = 0
 
     def set_position(self):

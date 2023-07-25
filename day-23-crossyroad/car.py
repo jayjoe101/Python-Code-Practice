@@ -17,10 +17,13 @@ class Car(Turtle):
 
     def car_position(self):
         self.setheading(180)
-        self.goto(r.randint(320,920),r.randint(-275,275))
+        self.goto(r.randint(320,920),r.randint(-240,275))
     
     def move(self):
         self.forward(self.car_speed)
 
     def increase_speed(self, n):
         self.car_speed = n
+
+    def delete(self):
+        self.clear()

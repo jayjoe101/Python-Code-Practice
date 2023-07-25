@@ -37,6 +37,7 @@ while gameison:
         if player.ycor() > 270:
             player.set_position()
             level.add_score()
+            cars.clear_traffic()
             break
 
         for c in cars.traffic:

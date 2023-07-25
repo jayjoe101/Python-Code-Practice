@@ -11,3 +11,7 @@ class Traffic():
     def create_traffic(self, level):
         for _ in range(level*5):
             self.add_car()
+
+    def clear_traffic(self):
+        for car in self.traffic:
+            car.delete()
