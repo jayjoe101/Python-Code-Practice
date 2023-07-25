@@ -20,7 +20,7 @@ while game_is_on:
     t = Turtle(visible=False)
     t.penup()
 
-    player_guess = screen.textinput('Player_Guess', f'Lives = {lives}\nEnter a State Name:')
+    player_guess = screen.textinput(f'{correct_guesses}/50', f'Lives = {lives}\nEnter a State Name:')
     if str(player_guess).lower() in states:
         guessed_state = str(player_guess).lower()
         if len(guessed_state.split()) > 1:
