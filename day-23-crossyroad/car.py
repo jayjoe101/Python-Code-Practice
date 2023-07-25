@@ -22,8 +22,5 @@ class Car(Turtle):
     def move(self):
         self.forward(self.car_speed)
 
-    def increase_speed(self, n):
+    def set_speed(self, n):
         self.car_speed = n
-
-    def delete(self):
-        self.clear()

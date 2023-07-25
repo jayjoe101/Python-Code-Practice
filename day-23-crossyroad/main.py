@@ -23,11 +23,12 @@ player.set_position()
 cars = Traffic()
 level = Scoreboard()
 
+speed = 1
 gameison = True
 levelison = True
 while gameison:
     
-    cars.create_traffic(level.level)
+    cars.create_traffic(level.level, speed)
     time.sleep(1)
 
     while levelison:
@@ -38,6 +39,7 @@ while gameison:
             player.set_position()
             level.add_score()
             cars.clear_traffic()
+            speed += 1
             break
 
         for c in cars.traffic:
