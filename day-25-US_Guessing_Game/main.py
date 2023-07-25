@@ -23,7 +23,13 @@ while game_is_on:
     player_guess = screen.textinput('Player_Guess', f'Lives = {lives}\nEnter a State Name:')
     if str(player_guess).lower() in states:
         guessed_state = str(player_guess).lower()
-        guessed_state = guessed_state[0].upper() + guessed_state[1:]
+        if len(guessed_state.split()) > 1:
+            temp = ''
+            for word in guessed_state.split():
+                temp += f'{word[0].upper()}{word[1:]} '
+            guessed_state = temp.strip()
+        else:
+            guessed_state = guessed_state[0].upper() + guessed_state[1:]
         
         xcord = states_data[states_data.state == guessed_state].x.values[0]
         ycord = states_data[states_data.state == guessed_state].y.values[0]
