@@ -3,12 +3,17 @@ from tkinter import *
 screen = Tk()
 screen.title('this be a title')
 screen.minsize(width=500, height=500)
-
+screen.config(padx=50, pady=50) # adds space around a specific thing, can be used on the entire screen
+# or a specific widget
 
 # labels
 label = Label(text='some text', font=('arial', 24, 'bold'))
-label.pack(expand=True) # actually puts the label on the screen
+label.pack() # actually puts the label on the screen
 
+# can use grid() and place()
+# place() is for x y cords... place (x=0, y=0)
+# grid() is a simpler place instead of cords its based on where things are grid(row=0, column=1)
+# cannot merge grid() and pack()
 
 # entry
 input = Entry(width=10)
