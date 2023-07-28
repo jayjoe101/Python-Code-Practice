@@ -4,7 +4,7 @@ screen = Tk()
 screen.title('Mi-Km')
 screen.minsize(width=200, height=200)
 screen.maxsize(width=200, height=200)
-screen.config(padx=10, pady=10)
+screen.config(pady=50)
 
 mile_label = Label(text='Miles')
 mile_label.grid(row=0, column=2)
