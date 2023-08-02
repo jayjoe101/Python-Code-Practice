@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, sample
 import pyperclip
+import json
 
 
 # constants
@@ -9,6 +10,24 @@ BLACK = '#0f1011'
 RED = '#ee1f1f'
 FONT_NAME = 'Arial'
 
+
+# search function
+def search_pw():
+    url = website.get()
+    try:
+        with open('passwords.json', mode='r') as pw_file:
+            creds = json.load(pw_file)
+            creds.update()
+            x = False
+            for site in creds:
+                if site == url:
+                    x = True
+                    messagebox.showinfo(title=f'{url}', message=f'Username:{creds.get(url, None)["email"]}\nPassword:{creds.get(url, None)["password"]}')
+                    break
+            if not x:
+                messagebox.showerror(title='Error', message='No credentials associated with provided website.')
+    except FileNotFoundError:
+        messagebox.showerror(title='Error', message='No password history is currently saved.\nPlease save a password.')
 
 # password gen function
 def gen_password():
@@ -43,15 +62,35 @@ def gen_password():
 # add function
 def save_password():
     if len(website.get()) > 0 and len(username.get()) > 0 and len(password.get()) > 0:
+        
         credentials_correct = messagebox.askokcancel(title='Confirmation', message=f'Website: {website.get()}\nEmail/Username: {username.get()}\nPassword: {password.get()}\nAre these Credentials Correct?')
     
         if credentials_correct:
 
-            messagebox.showinfo(title='Success', message=f'Password for {username.get()} on {website.get()} has successfully been saved!')
+            formatted_creds = {
+                website.get(): {
+                    'email': username.get(),
+                    'password': password.get(),
+                }
+            }
+            try:
+                with open('passwords.json', mode='r') as pw_file:
+                    # read old data
+                    creds = json.load(pw_file)
+                    #update the old data with the new stuff
+                    creds.update(formatted_creds)
 
-            with open('passwords.txt', mode='a') as pw_file:
-                pw_file.write(f'{website.get()} | {username.get()} | {password.get()}\n')
-    
+                with open('passwords.json', mode='w') as pw_file:
+                    # save the new data
+                    json.dump(creds, pw_file, indent=4) # indent = num of spaces in between braces, and adds new lines
+
+                    messagebox.showinfo(title='Success', message=f'Password for {username.get()} on {website.get()} has successfully been saved to .\{pw_file.name}!')
+            except FileNotFoundError:
+                with open('passwords.json', mode='w') as pw_file:
+                    json.dump(formatted_creds, pw_file, indent=4)
+
+                    messagebox.showinfo(title='Success', message=f'Password for {username.get()} on {website.get()} has successfully been saved to .\{pw_file.name}!')
+
             website.delete(0, END)
             password.delete(0, END)
             website.focus()
@@ -91,13 +130,13 @@ password_label.grid(row=4, column=1)
 
 
 # entries
-website = Entry(width=60)
+website = Entry(width=30)
 website.focus()
 username = Entry(width=60)
 username.insert(0, 'joe@mail.com')
 password = Entry(width=30)
 
-website.grid(row=2, column=2, columnspan=5)
+website.grid(row=2, column=2, columnspan=2)
 username.grid(row=3, column=2, columnspan=5)
 password.grid(row=4, column=2, columnspan=2)
 
@@ -105,9 +144,10 @@ password.grid(row=4, column=2, columnspan=2)
 # buttons
 generate_password = Button(text='Generate Password',highlightthickness=0, width=30, command=gen_password)
 add_button = Button(text='Add',highlightthickness=0, width=60, command=save_password)
+search_button = Button(text='Search',highlightthickness=0, width=30, command=search_pw)
 
 generate_password.grid(row=4, column=5, columnspan=2)
 add_button.grid(row=5, column=2, columnspan=5)
-
+search_button.grid(row=2, column=5, columnspan=2)
 
 screen.mainloop()
