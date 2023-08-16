@@ -5,7 +5,7 @@ import random as r
 # ---working code aswell as notes--- 
 
 my_email = 'mail@gmail.com'
-app_pw = 'passworld'
+app_pw = 'password'
 
 # connection = smtplib.SMTP('smtp.gmail.com')
 # connection.starttls()
